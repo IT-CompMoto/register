@@ -4,7 +4,6 @@ import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { HiUserGroup } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
-import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
 
