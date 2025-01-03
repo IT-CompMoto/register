@@ -5,13 +5,13 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex h-full">
-      <div>
+      <div className="items-center">
 
-        <div className="banner">
+        <div className="banner flex items-center justify-center">
          
           <Image
             src="/PageTrackday.jpg"
-            width={1000}
+            width={1200}
             height={760}
             className=""
             alt="Screenshots of the Superbikemag Trackday&Trophy 2025 "
