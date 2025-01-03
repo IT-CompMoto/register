@@ -9,6 +9,9 @@ import 'react-phone-input-2/lib/style.css'
 
 export default function NewRegisterPage() {
 
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '');
+  };
 
   return (
     <main className='p-3'>
@@ -51,7 +54,7 @@ export default function NewRegisterPage() {
                   name='phonenumber'
                   placeholder="Enter Your Phone Number"
                   maxLength={3}
-                  onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
+                  onInput={handleInput}
                   required />
               </label>
 
