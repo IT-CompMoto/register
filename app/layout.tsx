@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { kanit } from "@/app/ui/fonts";
-import FooterPage from "@/app/ui/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",

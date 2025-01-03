@@ -1,4 +1,4 @@
-import { Inter, Kanit, Lusitana } from 'next/font/google';
+import { Kanit } from 'next/font/google';
 
 export const kanit = Kanit({
     weight: ['400', "700"],
