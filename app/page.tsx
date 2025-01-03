@@ -1,6 +1,6 @@
-import Image from "next/image";
+
 import Link from "next/link";
-import FooterPage from "@/app/ui/footer";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -8,7 +8,14 @@ export default function Home() {
       <div>
 
         <div className="banner">
-          <img src="PageTrackday.jpg" alt="" />
+         
+          <Image
+            src="/PageTrackday.jpg"
+            width={1000}
+            height={760}
+            className=""
+            alt="Screenshots of the Superbikemag Trackday&Trophy 2025 "
+          />
 
         </div>
 
