@@ -5,6 +5,8 @@ import { FaPhone } from "react-icons/fa6";
 import { HiUserGroup } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
 import 'react-phone-input-2/lib/style.css'
+import { useActionState } from 'react';
+import { addRacer } from '@/app/lib/actions';
 
 
 export default function NewRegisterPage() {
@@ -20,7 +22,7 @@ export default function NewRegisterPage() {
       </div>
 
       <div className='mt-4'>
-        <form action="">
+        <form action={addRacer}>
           <div className='grid grid-cols-1 gap-3 lg:grid-cols-2 xl:grid-cols-3 mb-3'>
 
             <div className='w-full'>
@@ -53,7 +55,8 @@ export default function NewRegisterPage() {
                   id='phonenumber'
                   name='phonenumber'
                   placeholder="Enter Your Phone Number"
-                  maxLength={3}
+                  maxLength={10}
+                  minLength={10}
                   onInput={handleInput}
                   required />
               </label>
@@ -157,13 +160,13 @@ export default function NewRegisterPage() {
 
           <div className='mb-12 mt-10'>
             <div className='mb-5'>
-              <h1 className='text-2xl font-bold underline underline-offset-4'>หมายเลขนักแข่ง / Racer Number</h1>
+              <h1 className='text-2xl font-bold underline underline-offset-4' defaultValue="">หมายเลขนักแข่ง / Racer Number</h1>
             </div>
             <div>
-              <select name='race_number' className="select select-bordered w-full max-w-sm rounded-full " >
+              <select name='race_number' defaultValue="" className="select select-bordered w-full max-w-sm rounded-full " required>
                 <option disabled value="">Racer Number</option>
-                <option value={'1'}>1</option>
-                <option value={'2'}>2</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
               </select>
             </div>
           </div>
