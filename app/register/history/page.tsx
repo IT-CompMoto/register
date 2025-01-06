@@ -24,7 +24,10 @@ export default async function HistoryPage(props: {
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
-        <h1 className={`text-2xl`}>History Page</h1>
+        {/* <h1 className={`text-2xl`}>History Page</h1> */}
+        <div className="font-bold text-2xl md:text-4xl mb-8">
+        <h1>ลงทะเบียนแข่ง / Register</h1>
+      </div>
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
