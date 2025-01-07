@@ -4,17 +4,18 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex h-full">
-      <div className="items-center">
+    <main className="flex h-full items-center justify-center">
+      <div className="">
 
-        <div className="banner flex items-center justify-center">
+        <div className="banner">
          
           <Image
             src="/PageTrackday.jpg"
             width={1200}
             height={760}
-            className=""
+            className="object-fill"
             alt="Screenshots of the Superbikemag Trackday&Trophy 2025 "
+            style={{width: '100%',  }}
           />
 
         </div>

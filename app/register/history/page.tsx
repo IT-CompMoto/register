@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Suspense } from 'react';
 import { RevenueChartSkeleton } from '@/app/ui/skeletons';
 import { fetchRacerPages } from '@/app/lib/data';
