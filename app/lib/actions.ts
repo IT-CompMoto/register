@@ -20,7 +20,7 @@ const FormSchema = z.object({
 
 });
 
-const AddRacer = FormSchema.omit({ id: true, image_url: true });
+// const AddRacer = FormSchema.omit({ id: true, image_url: true });
 
 export type State = {
     errors?: {
@@ -88,7 +88,7 @@ export async function addRacer(formData: FormData) {
             VALUES (${fullname}, ${phone}, ${email}, ${team}, ${number}, ${image_url})
           `;
 
-    } catch (error) {
+    } catch {
         return {
             message: 'Database Error: Failed to Add new register.',
         };
@@ -104,7 +104,7 @@ export async function deleteInvoice(id: string) {
       await sql`DELETE FROM racer WHERE id = ${id}`;
       revalidatePath('/register/history');
       return { message: 'Deleted Invoice.' };
-    } catch (error) {
+    } catch {
       return {
         message: 'Database Error: Failed to Delete Invoice.',
       };
