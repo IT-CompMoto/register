@@ -5,20 +5,20 @@ import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-const FormSchema = z.object({
-    id: z.string(),
-    fullname: z.string({
-        invalid_type_error: 'Please enter your name.',
-    }),
-    phone: z.string().min(10, { message: 'Phone number must be at 10 characters' }).max(10),
-    email: z.string({
-        invalid_type_error: 'Please enter your email.',
-    }),
-    team: z.string(),
-    number: z.coerce.number(),
-    image_url: z.string(),
+// const FormSchema = z.object({
+//     id: z.string(),
+//     fullname: z.string({
+//         invalid_type_error: 'Please enter your name.',
+//     }),
+//     phone: z.string().min(10, { message: 'Phone number must be at 10 characters' }).max(10),
+//     email: z.string({
+//         invalid_type_error: 'Please enter your email.',
+//     }),
+//     team: z.string(),
+//     number: z.coerce.number(),
+//     image_url: z.string(),
 
-});
+// });
 
 // const AddRacer = FormSchema.omit({ id: true, image_url: true });
 
