@@ -35,11 +35,9 @@ export type State = {
   message?: string | null;
 };
 
-// export async function addRacer(
-//   prevState: State,
-//   formData: FormData
-// ) {
-//   const validatedFields = AddRacer.safeParse({
+// export async function addRacer(formData: FormData) {
+
+//     const validatedFields = AddRacer.safeParse({
 //     fullname: formData.get('fullname'),
 //     phone: formData.get('phonenumber'),
 //     email: formData.get('email'),
@@ -47,24 +45,22 @@ export type State = {
 //     number: formData.get('race_number'),
 
 //   });
-
 //   if (!validatedFields.success) {
 //     return {
 //       errors: validatedFields.error.flatten().fieldErrors,
-//       message: 'Missing Fields. Failed to Add new register.',
+//       message: 'Missing Fields. Failed to Create Invoice.',
 //     };
 //   }
-
 //   const { fullname, phone, email, team, number } = validatedFields.data;
-//   const image_url = '/racer/profile/blank.webp';
-
+//   const image_url = "/racer/profile/blank.webp";
 //   try {
 //     await sql`
-//       INSERT INTO racer (fullname, phone, email, team, number, image_url)
-//       VALUES (${fullname}, ${phone}, ${email}, ${team}, ${number}, ${image_url})
-//     `;
+//             INSERT INTO racer (fullname, phone, email, team, number, image_url)
+//             VALUES (${fullname}, ${phone}, ${email}, ${team}, ${number}, ${image_url})
+//           `;
 
 //   } catch (error) {
+//     console.error('Database Error:', error);
 //     return {
 //       message: 'Database Error: Failed to Add new register.',
 //     };
@@ -73,40 +69,57 @@ export type State = {
 //   redirect('/register/history');
 // }
 
+export async function addRacer(
 
-export async function addRacer(formData: FormData) {
-  const { fullname, phone, email, team, number } = AddRacer.parse({
+  formData: FormData
+) {
+
+  const validatedFields = AddRacer.safeParse({
     fullname: formData.get('fullname'),
     phone: formData.get('phonenumber'),
     email: formData.get('email'),
     team: formData.get('team'),
     number: formData.get('race_number'),
-
   });
-  // Test it out:
-  //   console.log(rawFormData);
-  // const { fullname, phone, email, team, number } = rawFormData;
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Create Invoice.',
+    };
+  }
+
+  const { fullname, phone, email, team, number } = validatedFields.data;
   const image_url = "/racer/profile/blank.webp";
+
+
   try {
     await sql`
             INSERT INTO racer (fullname, phone, email, team, number, image_url)
             VALUES (${fullname}, ${phone}, ${email}, ${team}, ${number}, ${image_url})
           `;
 
-  } catch {
+  } catch (error) {
+    console.error('Database Error:', error);
     return {
-      message: 'Database Error: Failed to Add new register.',
+      message: 'Database Error: Failed to Create Invoice.',
     };
   }
+
   revalidatePath('/register/history');
   redirect('/register/history');
 }
 
 
 export async function deleteInvoice(id: string) {
- 
+  // throw new Error('Failed to Delete Invoice');
+  try {
     await sql`DELETE FROM racer WHERE id = ${id}`;
     revalidatePath('/register/history');
-    
-    
+  } catch (error) {
+    console.error('Database Error:', error);
+    return {
+      message: 'Database Error: Failed to Create Invoice.',
+    };
+  }
 }

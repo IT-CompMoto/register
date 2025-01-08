@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { RacerForm } from './definitions';
+import { RacerForm, RacerField } from './definitions';
 
 
 const ITEMS_PER_PAGE = 6;
@@ -25,7 +25,7 @@ export async function fetchRacer(
       `;
   
     //   console.log('Data fetch completed after 3 seconds.');
-  
+    
       return data.rows;
     } catch (error) {
         console.error('Database Error:', error);
@@ -52,5 +52,50 @@ export async function fetchRacer(
     } catch (error) {
       console.error('Database Error:', error);
       throw new Error('Failed to fetch total number of Racer.');
+    }
+  }
+
+
+  export async function fetchRacerName() {
+    try {
+      const data = await sql<RacerField>`
+        SELECT
+          id,
+          name
+        FROM racer
+        ORDER BY name ASC
+      `;
+  
+      const racer = data.rows;
+      return racer;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch all customers.');
+    }
+  }
+
+
+  export async function fetchRacerNameById(id: string) {
+    try {
+      const data = await sql`
+        SELECT
+          invoices.id,
+          invoices.customer_id,
+          invoices.amount,
+          invoices.status
+        FROM invoices
+        WHERE invoices.id = ${id};
+      `;
+  
+      const invoice = data.rows.map((invoice) => ({
+        ...invoice,
+        // Convert amount from cents to dollars
+        amount: invoice.amount / 100,
+      }));
+  
+      return invoice[0];
+    } catch (error) {
+      console.error('Database Error:', error);
+      throw new Error('Failed to fetch invoice.');
     }
   }
