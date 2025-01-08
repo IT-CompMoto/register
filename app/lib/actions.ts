@@ -113,13 +113,20 @@ export async function addRacer(
 
 export async function deleteInvoice(id: string) {
   // throw new Error('Failed to Delete Invoice');
-  try {
+  // try {
     await sql`DELETE FROM racer WHERE id = ${id}`;
     revalidatePath('/register/history');
-  } catch (error) {
-    console.error('Database Error:', error);
-    return {
-      message: 'Database Error: Failed to Create Invoice.',
-    };
-  }
+  // } catch (error) {
+  //   console.error('Database Error:', error);
+  //   return {
+  //     message: 'Database Error: Failed to Create Invoice.',
+  //   };
+  // }
 }
+
+// export async function deleteInvoice(id: string) {
+
+//   await sql`DELETE FROM invoices WHERE id = ${id}`;
+//   revalidatePath('/dashboard/invoices');
+
+// }
